@@ -1,0 +1,94 @@
+<div class="row align-items-center">
+  <div class="col">
+
+  </div>
+  <div class="col p-4">
+    <div class="card border border-dark mb-3 ">
+
+      <div class="card-body text-dark">
+        <!-- Default form login -->
+        <form class="text-center border border-light p-5" [formGroup]="loginForm">
+
+          <p class="h4 mb-4">Iniciar Sesión</p>
+
+          <!-- Email -->
+          <input type="email" id="defaultLoginFormEmail" formControlName="email" class="form-control mb-4" placeholder="E-mail">
+          <mdb-error
+            *ngIf="loginForm.invalid && (loginForm.dirty || loginForm.touched)">Por favor ingresar un correo Valido
+          </mdb-error>
+          <mdb-success
+            *ngIf="loginForm.valid && (loginForm.dirty || loginForm.touched)">Correo
+            valido
+          </mdb-success>
+          <!-- Password -->
+          <input type="password" id="defaultLoginFormPassword" formControlName="password" class="form-control mb-4" placeholder="Password">
+
+
+          <!-- Sign in button -->
+          <button mdbBtn color="info" class="my-4" type="submit" (click)="login();">Iniciar sesión</button>
+
+          <!-- Register -->
+          <p>No estas registrado?
+            <a class="btn-link text-primary" data-toggle="modal" data-target="#basicExample"
+               (click)="frame.show()">Registrate</a>
+          </p>
+        </form>
+      </div>
+    </div>
+
+  </div>
+  <div class="col">
+
+  </div>
+</div>
+
+<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Registrarse</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="userForm">
+        <div class="modal-body mx-3">
+          <div class="md-form mb-5">
+            <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+            <input type="text" id="orangeForm-name" class="form-control" formControlName="name" placeholder="Nombre">
+
+          </div>
+          <div class="md-form mb-5">
+            <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+            <input type="text" id="orangeForm-lastname" class="form-control" formControlName="lastName"
+                   placeholder="Apellido">
+          </div>
+          <div class="md-form mb-5">
+            <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon>
+            <input type="email" id="orangeForm-email" class="form-control" formControlName="email" placeholder="Correo">
+            <mdb-error
+              *ngIf="userForm.invalid && (userForm.dirty || userForm.touched)">Por favor ingresar un correo Valido
+            </mdb-error>
+            <mdb-success
+              *ngIf="userForm.valid && (userForm.dirty || userForm.touched)">Correo
+              valido
+            </mdb-success>
+          </div>
+
+          <div class="md-form mb-4">
+            <mdb-icon fas icon="lock" class="prefix grey-text"></mdb-icon>
+            <input type="password" id="orangeForm-pass" class="form-control" formControlName="password"
+                   placeholder="Contraseña">
+          </div>
+
+        </div>
+      </form>
+
+      <div class="modal-footer d-flex justify-content-center">
+        <button mdbBtn color="deep-orange" class="waves-light" (click)="register(); frame.hide()">Registrarse</button>
+      </div>
+    </div>
+  </div>
+</div>
+

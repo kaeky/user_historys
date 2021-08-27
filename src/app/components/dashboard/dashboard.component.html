@@ -1,0 +1,63 @@
+
+<div>
+  <app-navbar></app-navbar>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div mdbModal #UpdateModal="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Actualizar datos</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="UpdateModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <p class="text-center">Selecciona una compañia para vincularse</p>
+      <form [formGroup]="selectControl">
+
+        <div class="modal-body ">
+
+              <select class="form-control form-select" formControlName="companyFK" >
+                <option value="" default> Selecciona una compañia:</option>
+                <option *ngFor="let option of options" [value]="option.nit">{{ option.name }}</option>
+              </select>
+
+        </div>
+      </form>
+
+      <div class="modal-footer d-flex justify-content-center">
+        <button mdbBtn color="deep-orange" class="waves-light" (click)="vincularse(); UpdateModal.hide()">Vincularse
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

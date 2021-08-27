@@ -1,0 +1,139 @@
+<mdb-card class="m-3">
+  <!--Card image-->
+  <div
+    class="view  gradient-card-header  deep-purple lighten-2 narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+
+    <div class="ml-1">
+      <input mdbInput type="text" id="form1" class="form-control" placeholder="Buscar Proyecto">
+    </div>
+
+    <h4 class="text-center text-white">Proyectos</h4>
+    <div>
+      <button type="button" mdbBtn color="light" mdbWavesEffect (click)="frame.show()">Agregar Proyecto</button>
+    </div>
+
+  </div>
+  <!--/Card image-->
+
+  <div class="px-4">
+
+    <div class="table-wrapper">
+      <!--Table-->
+      <table class="mb-0" mdbTable>
+
+        <!--Table head-->
+        <thead>
+        <tr>
+
+          <th class="th-lg">
+            <a>Id</a>
+          </th>
+          <th class="th-lg">
+            <a>Nombre</a>
+          </th>
+          <th class="th-lg">
+            <a>Descripción</a>
+          </th>
+          <th class="th-lg">
+            <a>Compañia</a>
+          </th>
+          <th class="th-lg">
+            <a>Opciones</a>
+          </th>
+        </tr>
+        </thead>
+        <!--Table head-->
+
+        <!--Table body-->
+        <tbody>
+        <tr *ngFor="let data of datosproject">
+          <th scope="row">
+            {{data.id_project}}
+          </th>
+          <td>{{data.name}}</td>
+          <td>{{data.description}}</td>
+          <td>{{data.companyname}}</td>
+          <td>
+            <button type="button" mdbBtn color="black" mdbWavesEffect (click)="endesarrollo()">Ver</button>
+            <button type="button" mdbBtn color="black" mdbWavesEffect (click)="FormEdit(data)">Editar</button>
+          </td>
+        </tr>
+        </tbody>
+        <!--Table body-->
+      </table>
+      <!--Table-->
+    </div>
+  </div>
+</mdb-card>
+
+
+<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Agregar Proyecto</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="projectForm">
+        <div class="modal-body mx-3">
+          <div class="md-form mb-5">
+            <input type="text" id="orangeForm-name" class="form-control" formControlName="name" placeholder="Nombre">
+
+          </div>
+          <div class="md-form mb-5">
+            <textarea type="text" id="orangeForm-lastname" class="form-control" formControlName="description"
+                      placeholder="Descripción del proyecto"></textarea>
+          </div>
+        </div>
+      </form>
+
+      <div class="modal-footer d-flex justify-content-center">
+        <button mdbBtn color="deep-orange" class="waves-light" (click)="agregar(); frame.hide()">Agregar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div mdbModal #EditProject="mdbModal" class="modal fade left" id="editProject" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Agregar Proyecto</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="EditProject.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="editForm">
+        <div class="modal-body mx-3">
+          <div class="md-form mb-5">
+            <label class="form-label" for="form1">Id</label>
+            <br>
+            <br>
+            <input type="text" class="form-control" [value]="idsend" readonly>
+          </div>
+          <div class="md-form mb-5">
+            <label class="form-label" for="form1">Nombre Proyecto</label>
+            <br>
+            <input type="text" class="form-control" formControlName="name" placeholder="Nombre">
+
+          </div>
+          <div class="md-form mb-5">
+            <label class="form-label" for="form1">Descripción proyecto</label>
+            <br>
+            <textarea type="text" class="form-control" formControlName="description"
+                      placeholder="Descripción del proyecto"></textarea>
+          </div>
+        </div>
+      </form>
+
+      <div class="modal-footer d-flex justify-content-center">
+        <button mdbBtn color="deep-orange" class="waves-light" (click)="edit(); EditProject.hide()">editar</button>
+      </div>
+    </div>
+  </div>
+</div>
